@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fx-Layout="row">
+        <span class="title-center">Sign In</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="signInForm">
+        <div style="display: flex; flex-direction: column;">
+            <mat-form-field style="display: flex;appearance: fill;">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="signInForm.controls.email.touched && signInForm.controls.email.invalid">
+                    <span *ngIf="signInForm.controls.email.errors.required"> This Field is mandatory.</span>
+                    <span *ngIf="signInForm.controls.email.errors.pattern"> This Field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field style="display: flex;appearance: fill;">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" required>
+                <mat-error *ngIf="signInForm.controls.password.touched && signInForm.controls.password.invalid">
+                    <span *ngIf="signInForm.controls.password.errors.required"> This Field is mandatory.</span>
+                    <span *ngIf="signInForm.controls.password.errors.pattern"> This Field is invalid.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions allign="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(signInForm.valid && signInForm.dirty)">Submit</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>
